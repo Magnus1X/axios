@@ -375,6 +375,12 @@ export interface AxiosRequestConfig<D = any> {
   http2Options?: Record<string, any> & {
     sessionTimeout?: number;
   };
+  retry?: {
+    retries?: number;
+    delay?: number | ((attempt: number, error?: any) => number);
+    retryCondition?: (error: any) => boolean;
+    onRetry?: (attempt: number, error: any, delay: number) => void;
+  };
 }
 
 // Alias
